@@ -1,0 +1,15 @@
+<script>
+        function pok1() {
+            let pokemonId = pokemonId.value
+
+            const apiUrl = `https://pokeapi.co/api/v2/pokemon/${pokemonId}/`;
+
+            fetch('https://pokeapi.co/api/v2/pokemon/${pokemonId}')
+                .then(response => response.json())
+                .then(poke => {
+                    let imagen = document.createElement('img');
+                    imagen.setAttribute('src', poke.sprites.front_default);
+                    document.getElementsByTagName('body')[0].appendChild(imagen);
+                })
+        }
+    </script>

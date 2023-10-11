@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/018a9b1f64.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="Estilos.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Pokemones</title>
+
+    <script>
+        function pok1() {
+            let pokemonId = pok1Input.value
+            let apiUrl = `https://pokeapi.co/api/v2/pokemon/${pokemonId}/`;
+            
+
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(poke => {
+
+                    let carta = document.createElement('div');
+                    carta.className = 'card';
+
+                    let imagen = document.createElement('img');
+                    imagen.className = 'card-img-top';
+                    imagen.setAttribute('src', poke.sprites.front_default);
+
+                    let cuerpoCarta = document.createElement('div');
+                    cuerpoCarta.className = 'card-body';
+
+                    let tituloCarta = document.createElement('h5');
+                    tituloCarta.className = 'card-title';
+                    tituloCarta.textContent = poke.name;
+
+                    let textoCarta = document.createElement('p');
+                    textoCarta.className = 'card-text';
+                    textoCarta.textContent = `Número: ${poke.id}`;
+
+                    cuerpoCarta.appendChild(tituloCarta);
+                    cuerpoCarta.appendChild(textoCarta);
+
+                    carta.appendChild(imagen);
+                    carta.appendChild(cuerpoCarta);
+
+                    let cartasDiv = document.getElementById('cartas');
+                    cartasDiv.appendChild(carta);
+                })
+
+        }
+    </script>
+</head>
+
+<body id="color">
+    <div class="centrarContainer">
+        <div>
+            <label id="tituloNumeroPokemon">Ingresa N° Pokemon</label><br>
+            <input type="number" id="pok1Input" class="form-control" placeholder="Buscar">
+            <div id="containerVerPokemon" class="container">
+                <img id="poke" src="pokeloca.png" onclick="pok1()"> 
+            </div>
+
+        </div>
+    </div>
+
+    <div id="cartas">
+
+    </div>
+</body>
+
+</html>

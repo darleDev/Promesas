@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promesas Json Colombia</title>
+    <script>
+        fetch('colombia.json')
+            .then(response => response.json()) // Puedo poner .text para convertilo en texto o Json para dejarlo en archivo .Json
+            .then(data => {
+                let resultado = data.find(({ departamento }) => departamento == "Antioquia")
+                let municipios = resultado.ciudades;
+
+                for (i = 0; i < municipios.length; i++) {
+                    let fila = document.createElement('tr');
+                    let celda = document.createElement('td');
+                    celda.textContent = municipios[i]
+                    fila.appendChild(celda)
+                    munici.appendChild(fila)
+                }
+            })
+    </script>
+</head>
+
+<body>
+    <table id="munici" border="1">
+        <tr>
+            <th>Departamento</th>
+            <th>Municipios</th>
+        </tr>
+    </table>
+</body>
+
+</html>
